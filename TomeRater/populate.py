@@ -11,15 +11,24 @@ nonfiction2 = Tome_Rater.create_non_fiction("Computing Machinery and Intelligenc
 novel2 = Tome_Rater.create_novel("The Diamond Age", "Neal Stephenson", 10101010)
 novel3 = Tome_Rater.create_novel("There Will Come Soft Rains", "Ray Bradbury", 10001000)
 
+#Tests if the expected error is raised
+novel4 = Tome_Rater.create_novel(4,5,"test")
+
+
 #Create users:
 Tome_Rater.add_user("Alan Turing", "alan@turing.com")
 Tome_Rater.add_user("David Marr", "david@computation.org")
+
+#Change user email
+Tome_Rater.change_user_email("alan@turing.com", "test@test.com")
+Tome_Rater.change_user_email("test@test.com", "alan@turing.com")
+
 
 #Add a user with three books already read:
 Tome_Rater.add_user("Marvin Minsky", "marvin@mit.edu", user_books=[book1, novel1, nonfiction1])
 
 #Add books to a user one by one, with ratings:
-Tome_Rater.add_book_to_user(book1, "alan@turing.com", 1)
+Tome_Rater.add_book_to_user(book1, "alan@turing.com", 5)
 Tome_Rater.add_book_to_user(novel1, "alan@turing.com", 3)
 Tome_Rater.add_book_to_user(nonfiction1, "alan@turing.com", 3)
 Tome_Rater.add_book_to_user(nonfiction2, "alan@turing.com", 4)
@@ -31,12 +40,16 @@ Tome_Rater.add_book_to_user(novel3, "david@computation.org", 4)
 
 
 #Uncomment these to test your functions:
-# Tome_Rater.print_catalog()
-# Tome_Rater.print_users()
+Tome_Rater.print_catalog()
+Tome_Rater.print_users()
 
-# print("Most positive user:")
-# print(Tome_Rater.most_positive_user())
-# print("Highest rated book:")
-# print(Tome_Rater.highest_rated_book())
-# print("Most read book:")
-# print(Tome_Rater.get_most_read_book())
+print("Most positive user:")
+print(Tome_Rater.most_positive_user())
+print("Highest rated book:")
+print(Tome_Rater.highest_rated_book())
+print("Most read book:")
+print(Tome_Rater.most_read_book())
+
+User1= Tome_Rater.users["marvin@mit.edu"]
+print(User1)
+print(User1.get_average_rating())
